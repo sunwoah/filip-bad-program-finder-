@@ -1,0 +1,20 @@
+ #!/bin/bash
+
+#make the log
+rm -Rf dpkglog
+touch dpkglog
+dpkg -l > dpkglog
+
+#finding unwanted apps
+if grep -q netcat "$dpkglog"; then
+        echo "would you like to remove netcat? yes or no"
+        read -p answer1
+        if answer1=yes; then
+                apt remove netcat
+        fi
+        if answer1=no; then
+                continue
+        fi
+        else
+                continue
+fi
